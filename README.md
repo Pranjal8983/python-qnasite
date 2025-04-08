@@ -27,6 +27,24 @@ A Django-based Q&A platform inspired by Quora, allowing users to ask questions, 
     - The user cannot post an answer if they are not logged in
     - The user cannot post an answer to their own question
 
+- **User Interface**
+  - Clean and responsive design using Bootstrap
+  - Intuitive navigation
+
+## Screenshots
+
+![Register Page](docs/images/register.png)
+_Register page_
+
+![Login Page](docs/images/login.png)
+_Login page_
+
+![Home Page](docs/images/home.png)
+_Home page showing list of questions_
+
+![Question Detail](docs/images/question_detail.png)
+_Question detail page with answers and interaction options_
+
 ## Prerequisites
 
 - Python 3.12 or higher
@@ -92,6 +110,8 @@ qnasite/
 │   ├── views.py       # View functions
 │   ├── urls.py        # URL routing
 │   └── forms.py       # Form definitions
+├── docs/              # Documentation
+│   └── images/        # Screenshots and diagrams
 ├── manage.py          # Django management script
 └── qnasite/           # Project configuration
 ```
