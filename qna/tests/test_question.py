@@ -58,6 +58,35 @@ class QuestionCreateTestCase(BaseTestCase):
         self.assertEqual(response.status_code, 302)
 
 
+class QuestionDetailTestCase(BaseTestCase):
+    def setUp(self):
+        super().setUp()
+        self.user = self.create_user()
+        self.question = Question.objects.create(
+            title="Test Question", content="Test Content", author=self.user
+        )
+        self.authenticate(self.user)
+
+    def test_success(self):
+        """
+        To makes sure that the question is displayed successfully
+        """
+        response = self.make_get_request(
+            reverse("question_detail", args=[self.question.id])
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "qna/question_detail.html")
+
+    def test_unauthenticated(self):
+        """
+        To makes sure that the question is displayed even if the user is not authenticated
+        """
+        response = self.make_get_request(
+            reverse("question_detail", args=[self.question.id])
+        )
+        self.assertEqual(response.status_code, 200)
+
+
 class QuestionUpdateTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
