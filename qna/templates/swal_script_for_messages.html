@@ -1,0 +1,42 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function swalSuccess(message, title = 'Success!') {
+        commonSwalAlert('success', title, message, 'Okay');
+    }
+
+    function swalError(message, title = 'Error!') {
+        commonSwalAlert('error', title, message);
+    }
+
+    function swalInfo(message, title = 'Info!') {
+        commonSwalAlert('info', title, message);
+    }
+
+    function swalWarning(message, title = 'Warning!') {
+        commonSwalAlert('warning', title, message);
+    }
+
+    function commonSwalAlert(icon, title, message, confirmButtonText = 'Close') {
+        Swal.fire({
+            title: title,
+            text: message,
+            icon: icon,
+            confirmButtonText: confirmButtonText
+        })
+    }
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                swalSuccess("{{ message }}")
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                swalError("{{ message }}");
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                swalInfo("{{ message }}");
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                swalWarning("{{ message }}");
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</script>

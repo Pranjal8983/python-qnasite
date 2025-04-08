@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Update Question - QnA Site{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Update Question</h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="mb-3">
+                            {{ field|show_label }}
+                            {{ field }}
+                            {{ field|show_field_errors }}
+                        </div>
+                    {% endfor %}
+                    {% if form.errors %}{{ form.non_field_errors|show_non_field_errors }}{% endif %}
+                    <div class="my-2 d-grid">
+                        <button type="submit" class="btn btn-primary">Update Question</button>
+                        <a href="{% url 'question_detail' object.pk %}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

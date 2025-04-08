@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Home - QnA Site{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1 class="mb-4">Questions</h1>
+        
+        {% for question in questions %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{% url 'question_detail' question.id %}" class="text-decoration-none">
+                            {{ question.title }}
+                        </a>
+                    </h5>
+                    <p class="card-text">{{ question.content|truncatewords:50 }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">
+                            Asked by {{ question.author.username }} on {{ question.created_at|date:"F j, Y" }}
+                        </small>
+                        <span class="badge bg-primary">
+                            {{ question.answers.count }} answers
+                        </span>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="alert alert-info">
+                No questions have been asked yet. Be the first to ask a question!
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 
