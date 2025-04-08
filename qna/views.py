@@ -30,6 +30,7 @@ class QuestionListView(ListView):
     template_name = "qna/home.html"
     context_object_name = "questions"
     ordering = ["-created_at"]
+    paginate_by = 10
 
 
 class QuestionDetailView(DetailView):
