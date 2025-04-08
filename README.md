@@ -107,9 +107,10 @@ qnasite/
 │   ├── migrations/    # Database migrations
 │   ├── templates/     # HTML templates
 │   ├── models/        # Database models
-│   ├── views.py       # View functions
+│   ├── views/         # View functions
 │   ├── urls.py        # URL routing
 │   └── forms.py       # Form definitions
+│   └── tests/         # Test files
 ├── docs/              # Documentation
 │   └── images/        # Screenshots and diagrams
 ├── manage.py          # Django management script
