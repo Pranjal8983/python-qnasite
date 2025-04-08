@@ -25,9 +25,6 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <small class="text-muted">
                                 Asked by {{ question.author.username }} on {{ question.created_at|date:"F j, Y" }}
-                                {% if question.updated_at != question.created_at %}
-                                    <span class="text-muted">(edited)</span>
-                                {% endif %}
                             </small>
                             <span class="badge bg-primary">{{ question.answers.count }} answers</span>
                         </div>
