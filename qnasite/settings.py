@@ -16,8 +16,11 @@ from pathlib import Path
 import environ
 
 env = environ.Env(
-    DEBUG=(bool, False),
-    SECRET_KEY=(str, "django-insecure-p%lzs*zmj(nak0uvx4nm03+mzk=k6=0%p+@qcljef1l39xf7s8"),
+    DEBUG=(bool, True),
+    SECRET_KEY=(
+        str,
+        "django-insecure-p%lzs*zmj(nak0uvx4nm03+mzk=k6=0%p+@qcljef1l39xf7s8",
+    ),
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -87,12 +90,17 @@ WSGI_APPLICATION = "qnasite.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+if env("ENV_NAME", default="local") == "local":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": env.db(),
+    }
 
 
 # Password validation
