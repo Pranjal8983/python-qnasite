@@ -76,7 +76,7 @@ class AnswerCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
     model = Answer
     form_class = AnswerForm
-    template_name = "qna/create_question.html"
+    template_name = "qna/question_detail.html"
     success_message = "Your answer has been posted!"
 
     def get_context_data(self, **kwargs):

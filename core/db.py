@@ -1,4 +1,4 @@
-import datetime
+from django.utils import timezone
 
 from django.db import models
 
@@ -63,7 +63,7 @@ class SoftDeleteWithBaseModel(BaseModel):
         This function sets the "deleted_at" attribute to the current datetime
         and saves the object.
         """
-        self.deleted_at = datetime.datetime.now()
+        self.deleted_at = timezone.now()
         self.save()
 
     def restore(self):
@@ -80,4 +80,4 @@ class SoftDeleteWithBaseModel(BaseModel):
         Performs a bulk delete operation on objects matching the
         specified filters
         """
-        cls.objects.filter(**filters).update(deleted_at=datetime.datetime.now())
+        cls.objects.filter(**filters).update(deleted_at=timezone.now())
